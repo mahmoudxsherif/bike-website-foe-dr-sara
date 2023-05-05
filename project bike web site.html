@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+      /* Global styles */
+   body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Header styles */
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+  }
+  header h1 {
+    margin: 0;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  nav li {
+    margin-right: 20px;
+  }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+  }
+  nav a:hover {
+    color: #ffcc00;
+  }
+
+  /* Main content styles */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  section {
+    margin-bottom: 40px;
+  }
+  h2 {
+    margin-top: 0;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  li {
+    margin-right: 20px;
+  }
+  li:last-child {
+    margin-right: 0;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  } 
+.note {
+opacity: 0; /* Initially set the opacity to 0 */
+transition: opacity 0.3s ease; /* Add a transition for opacity */
+}
+
+.note.fade-in {
+opacity: 1; /* Change the opacity to 1 when the class is added */
+}
+  /* Footer styles */
+  footer {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: center;
+  }
+  </style>
+  
+</head>
+<body>
+  <header>
+    <h1>Bike Website</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Bikes</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Welcome to Bike Website</h2>
+      <p>At Bike Website, we offer a wide selection of bikes and accessories for all types of riders. Browse our collection today and find your perfect bike!</p>
+    </section>
+    <section>
+      <h2>Featured Bikes</h2>
+      <ul>
+        <li>
+          <img src=https://s3.us-east-1.amazonaws.com/craft-marinbikes/images/2020/bikes/category/header/_1200x630_crop_center-center_82_none/23-rzxr-action-65.jpg?mtime alt="Mountain Bike">
+          <h3>Mountain Bike</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mauris tellus.</p>
+          <button>Learn More</button>
+        </li>
+        <li>
+          <img src=https://dqh479dn9vg99.cloudfront.net/wp-content/uploads/sites/9/2018/02/canyon_ultimate_cf_slx_8_review.jpg alt="Road Bike">
+          <h3>Road Bike</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mauris tellus.</p>
+          <button>Learn More</button>
+        </li>
+        <li>
+          <!-- Add third featured bike here -->
+        </li>
+      </ul>
+    </section>
+    <div id="notes-container">
+      <button id="add-note">Add Note</button>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; Bike Website 2023</p>
+  </footer>
+  <script >
+    // Select the "Add Note" button
+const addNoteButton = document.getElementById("add-note");
+
+// Add a click event listener to the "Add Note" button
+addNoteButton.addEventListener("click", function() {
+  // Create a new text area element
+  const textarea = document.createElement("textarea");
+  textarea.placeholder = "Enter your note here";
+  
+  // Create a new div to contain the text area and a "Save" button
+  const noteDiv = document.createElement("div");
+  noteDiv.classList.add("note");
+  
+  // Add the text area and a "Save" button to the new div
+  noteDiv.appendChild(textarea);
+  
+  const saveButton = document.createElement("button");
+  saveButton.innerText = "Save";
+  saveButton.addEventListener("click", function() {
+    // Get the text from the text area and save it
+    const noteText = textarea.value;
+    saveNoteToDatabase(noteText); // replace with code to save note to database
+    noteDiv.remove(); // remove the note div from the page
+  });
+  noteDiv.appendChild(saveButton);
+
+  // Add the new note div element to the notes container
+  const notesContainer = document.getElementById("notes-container");
+  notesContainer.insertBefore(noteDiv, addNoteButton);
+
+  // Add a class to trigger the fade-in animation
+  setTimeout(function() {
+    noteDiv.classList.add("fade-in");
+  }, 10);
+});
+
+  </script>
+</body>
+</html>
